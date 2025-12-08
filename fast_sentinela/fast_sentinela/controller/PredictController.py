@@ -1,65 +1,73 @@
 from datetime import datetime
+import pandas as pd
 
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, HTTPException
 
 from ..dto.PredictRequestDTO import PredictRequestDTO
 from ..enum.RoutesEnum import RoutesEnum
+from ..resources.maps.MapsFuncs import find_state_full_name
+from ..resources.models.loader import (
+    get_model_with_dry_days, 
+    get_model_without_dry_days
+    )
 
 router = APIRouter(prefix=RoutesEnum.PREDICT.value, tags=["predict"])
+
+def _period_of_day(hour: int) -> str:
+    if 5 <= hour < 12:
+        return "manha"
+    elif 12 <= hour < 17:
+        return "tarde"
+    elif 17 <= hour < 21:
+        return "noite"
+    else:
+        return "madrugada"
+
+
+def _build_datetime_features(timestamp: str) -> dict:
+    dt = pd.to_datetime(timestamp)
+    return {
+        "mes": dt.month,
+        "dia": dt.day,
+        "dia_semana": dt.weekday(),
+        "hora": dt.hour,
+        "periodo_dia": _period_of_day(dt.hour)
+    }
+
+def _rain_free_day_range(days_without_rain: int) -> str:
+    if days_without_rain <= 10:
+        return '0-10'
+    elif days_without_rain <= 20:
+        return '11-20'
+    elif days_without_rain <= 30:
+        return '21-30'
+    else:
+        return '30+'
+    
 
 @router.get("")
 async def get_now(params: PredictRequestDTO = Depends()):
     if params.data_pas is None:
         params.data_pas = datetime.now().isoformat(timespec="seconds")
 
-    return {
+    state = find_state_full_name(params.latitude, params.longitude)
+
+    if state is None:
+        raise HTTPException(status_code=400, detail="Coordinates outside coverage area")
+    
+    payload = {
         "latitude": params.latitude,
         "longitude": params.longitude,
-        "data_pas": params.data_pas
+        "estado": state,
+        **_build_datetime_features(params.data_pas)
     }
 
+    if params.days_without_rain is not None:
+        payload["numero_dias_sem_chuva"] = params.days_without_rain
+        payload["faixa_dias_sem_chuva"] = _rain_free_day_range(params.days_without_rain)
+        model = get_model_with_dry_days()
+    else:
+        model = get_model_without_dry_days()
 
-''''
-from fastapi import APIRouter, HTTPException, Query
-from datetime import datetime
-from typing import Optional
-import pandas as pd
-
-from sentinela.map.map_funcs import find_state
-from sentinela.ia.funcs import predizer_com_dias_sem_chuva
-
-router = APIRouter(prefix="/sentinela/predict", tags=["predict"])
-
-@router.get("/")
-async def get_now(
-    numero_dias_sem_chuva: int,
-    latitude: float,
-    longitude: float,
-    data_pas: Optional[str] = Query(default=None, description="Data no formato ISO (opcional, usa a atual se não informada)")
-):
-    # Se não for passada, usa a data atual
-    if data_pas is None:
-        data_pas = datetime.now().isoformat(timespec="seconds")
-
-    state = find_state(latitude, longitude)
-    if state == "DESCONHECIDO":
-        raise HTTPException(status_code=400, detail="Coordenadas fora da área de cobertura")
-
-    dados = pd.DataFrame([{
-        "data_pas": data_pas,
-        "numero_dias_sem_chuva": numero_dias_sem_chuva,
-        "latitude": latitude,
-        "longitude": longitude,
-        "estado": state
-    }])
-
-    # CONVERSÃO IMPORTANTE
-    dados["data_pas"] = pd.to_datetime(dados["data_pas"])
-
-    try:
-        resultado = predizer_com_dias_sem_chuva(dados)
-        return {"risco": int(resultado[0]), "estado": state}
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
-
-'''
+    df = pd.DataFrame([payload])
+    return {"risco": int(model.predict(df)[0])}
