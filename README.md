@@ -1,4 +1,18 @@
-# SENTINELA
+# 🌱 **SENTINELA**
+
+O **Sentinela** é um sistema de **monitoramento e análise ambiental focado na Caatinga**, desenvolvido por estudantes de **Ciência da Computação da CESAR School**, integrantes do grupo **Canidé**.
+
+Seu objetivo é oferecer uma **API simples, acessível e eficiente** para **analisar dados relacionados ao risco de incêndios e focos de queimadas** na região da Caatinga, utilizando conjuntos de dados ambientais reais.
+Além disso, o Sentinela foi pensado com um viés **educativo**, permitindo que estudantes em períodos iniciais de computação possam **aprender a trabalhar com APIs, dados reais e aplicações ambientais**, explorando tecnologia em um tema relevante para o Brasil.
+
+🔎 **O Sentinela transforma dados brutos em informações úteis**, auxiliando pesquisas, iniciativas ambientais e o desenvolvimento de soluções tecnológicas voltadas à preservação do bioma — de forma simplificada para facilitar o aprendizado.
+
+📌 **Documentação completa**
+Disponível em breve. *(link será adicionado futuramente)*
+
+### 👥 **Grupo Canide**
+
+---
 
 ## Instalação
 
@@ -52,6 +66,3 @@ curl "http://127.0.0.1:8000/sent/predict?latitude=-23.5489&longitude=-46.6388"
 - Swagger UI: `http://127.0.0.1:8000/docs`
 - ReDoc: `http://127.0.0.1:8000/redoc`
 
----
-
-Se quiser, eu posso ajustar `pyproject.toml` para uma faixa de Python mais comum (`>=3.10`) ou rodar os comandos aqui para testar o servidor.
