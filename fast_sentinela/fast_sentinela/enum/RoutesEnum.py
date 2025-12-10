@@ -5,3 +5,4 @@ base_path = '/sent'
 class RoutesEnum(Enum):
     PING = base_path + '/ping'
     PREDICT = base_path + '/predict'
+    IMAGE = base_path + '/image'
