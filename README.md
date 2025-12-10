@@ -58,9 +58,9 @@ Disponível em breve. *(link será adicionado futuramente)*
       </a>
     </td>
     <td align="center">
-      <a href="https://github.com/guiga-sa">
-        <img src="https://avatars.githubusercontent.com/u/123979639?v=4" width="100px;" alt="Foto Guilherme Silveira"/><br>
-        <sub><b>Guilherme Silveira</b></sub>
+      <a href="https://github.com/arthursuzuki">
+        <img src="https://avatars.githubusercontent.com/u/126833330?v=4" width="100px;" alt="Foto Arthur Suzuki"/><br>
+        <sub><b>Arthur Suzuki</b></sub>
       </a>
     </td>
     <td align="center">
