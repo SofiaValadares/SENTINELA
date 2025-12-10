@@ -43,6 +43,34 @@ Disponível em breve. *(link será adicionado futuramente)*
     </td>
 </table>
 
+<table>
+  <tr>
+    <td align="center">
+      <a href="https://github.com/joaovfittipaldi">
+        <img src="https://avatars.githubusercontent.com/u/132574730?v=4" width="100px;" alt="Foto João Vítor Fittipaldi"/><br>
+        <sub><b>João Vítor Fittipaldi</b></sub>
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/caetrias">
+        <img src="https://avatars.githubusercontent.com/u/127201879?v=4" width="100px;" alt="Foto Gabriel Caetano"/><br>
+        <sub><b>Gabriel Caetano</b></sub>
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/guiga-sa">
+        <img src="https://avatars.githubusercontent.com/u/123979639?v=4" width="100px;" alt="Foto Guilherme Silveira"/><br>
+        <sub><b>Guilherme Silveira</b></sub>
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/SofiaValadares">
+        <img src="https://avatars.githubusercontent.com/u/113111708?v=4" width="100px;" alt="Foto Sofia Valadares"/><br>
+        <sub><b>Sofia Valadares</b></sub>
+      </a>
+    </td>
+</table>
+
 ---
 
 ## 🧩 Pré-requisitos
