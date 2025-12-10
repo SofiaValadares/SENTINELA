@@ -66,3 +66,144 @@ curl "http://127.0.0.1:8000/sent/predict?latitude=-23.5489&longitude=-46.6388"
 - Swagger UI: `http://127.0.0.1:8000/docs`
 - ReDoc: `http://127.0.0.1:8000/redoc`
 
+``` json
+{
+	"info": {
+		"_postman_id": "acb38050-d6df-4c33-86a5-6c1744df2e3f",
+		"name": "Sentinela",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "38646115"
+	},
+	"item": [
+		{
+			"name": "predict",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{localhost}}/predict?latitude=-10.145694&longitude=-36.876551&days_without_rain=10",
+					"host": [
+						"{{localhost}}"
+					],
+					"path": [
+						"predict"
+					],
+					"query": [
+						{
+							"key": "data_pas",
+							"value": "0",
+							"disabled": true
+						},
+						{
+							"key": "latitude",
+							"value": "-10.145694"
+						},
+						{
+							"key": "longitude",
+							"value": "-36.876551"
+						},
+						{
+							"key": "days_without_rain",
+							"value": "10"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ping",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{localhost}}/ping",
+					"host": [
+						"{{localhost}}"
+					],
+					"path": [
+						"ping"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "image",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let data = pm.response.json();\r",
+							"\r",
+							"pm.visualizer.set(\r",
+							"    `\r",
+							"    <html>\r",
+							"      <body>\r",
+							"        <h3>insendio: {{insendio}}</h3>\r",
+							"        <img src=\"data:image/png;base64,{{img}}\" style=\"max-width: 100%; border: 1px solid #ccc;\" />\r",
+							"      </body>\r",
+							"    </html>\r",
+							"    `,\r",
+							"    {\r",
+							"        insendio: data.insendio,\r",
+							"        img: data.imagem_base64\r",
+							"    }\r",
+							");\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "postman-cloud:///1f0d5ef7-6b3f-42d0-9658-1f66ef754dc5"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{localhost}}/image",
+					"host": [
+						"{{localhost}}"
+					],
+					"path": [
+						"image"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "localhost",
+			"value": "http://127.0.0.1:8000/sent",
+			"type": "default"
+		}
+	]
+}
+```
+
