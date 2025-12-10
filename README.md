@@ -11,6 +11,9 @@ Além disso, o Sentinela foi pensado com um viés **educativo**, permitindo que 
 📌 **Documentação completa**  
 Disponível em breve. *(link será adicionado futuramente)*
 
+📌 **Repositorio do Front da Documentação**
+[Sentinela Front](https://github.com/caetrias/sentinela-front)
+
 ---
 
 ## 👥 **Grupo Canidé**
