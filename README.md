@@ -8,8 +8,7 @@ Além disso, o Sentinela foi pensado com um viés **educativo**, permitindo que 
 
 🔎 **O Sentinela transforma dados brutos em informações úteis**, auxiliando pesquisas, iniciativas ambientais e o desenvolvimento de soluções tecnológicas voltadas à preservação do bioma — de forma simplificada para facilitar o aprendizado.
 
-📌 **Documentação completa**  
-Disponível em breve. *(link será adicionado futuramente)*
+📌 [**Documentação completa**](https://sentinela-frontend-seven.vercel.app/%20%20nosso%20front%20esta%20deployado!!!)
 
 📌 [**Repositorio do Front da Documentação**](https://github.com/caetrias/sentinela-front)
 
@@ -156,13 +155,20 @@ uvicorn fast_sentinela.app:app --reload --host 0.0.0.0 --port 8000
 ---
 
 ## 🔌 Endpoints úteis
+* Chamada na nuvem: `https://sentinela-bii6.onrender.com`
+  
+  Embora tenhamos o deploy da api é recomendado usar a opção localmente 
 
 * `GET /sent/ping`
+
   Verifica se a API está no ar.
-  **Resposta esperada:** `{"pong": true}` (ou similar)
+
+  **Resposta esperada:** `{"pong"}`
 
 * `GET /sent/predict?latitude=<lat>&longitude=<lon>&days_without_rain=<dias>`
+
   Endpoint de predição de risco, usando latitude, longitude e dias sem chuva.
+
   Parâmetros:
 
   * `latitude` (obrigatório)
@@ -171,12 +177,13 @@ uvicorn fast_sentinela.app:app --reload --host 0.0.0.0 --port 8000
   * `data_pas` (opcional, usado em alguns cenários de teste)
 
 * `POST /sent/image`
+
   Recebe uma imagem (campo `file` em `form-data`) e retorna uma análise da imagem, incluindo:
 
   * se há **incêndio** detectado
   * a imagem tratada/recortada em **base64**
 
-Para mais detalhes sobre os endponts visite a documentação completa em  *(link será adicionado futuramente)*
+Para mais detalhes sobre os endponts visite a [documentação completa](https://sentinela-frontend-seven.vercel.app/%20%20nosso%20front%20esta%20deployado!!!).
 ---
 
 ## 📬 Coleção Postman
