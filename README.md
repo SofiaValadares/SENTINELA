@@ -66,9 +66,9 @@ Disponível em breve. *(link será adicionado futuramente)*
       </a>
     </td>
     <td align="center">
-      <a href="https://github.com/SofiaValadares">
-        <img src="https://avatars.githubusercontent.com/u/113111708?v=4" width="100px;" alt="Foto Sofia Valadares"/><br>
-        <sub><b>Sofia Valadares</b></sub>
+      <a href="https://github.com/MarinaFFSC">
+        <img src="https://avatars.githubusercontent.com/u/115357002?v=4" width="100px;" alt="Foto Marina Frias"/><br>
+        <sub><b>Marina Frias</b></sub>
       </a>
     </td>
 </table>
